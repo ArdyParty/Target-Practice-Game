@@ -1,0 +1,88 @@
+/*made a sick background with the image and made it wicked transparent*/
+
+body {
+    background-color: rgba(150,150,150,0.3);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    align-content: center;
+    background-image: url("images/Target-faded-clipped.png");
+}
+
+h1 {
+    text-align: center;
+    color: red;
+    font-size: 40px;
+    padding: 5px;
+    margin: 0px;
+}
+
+p {
+    text-align: center;
+    font-size: 22px;
+    padding: 5px;
+    margin: 0px;
+}
+
+h2 {
+    text-align: center;
+    padding: 20px 1px 0px 1px;
+    margin: 0px;
+}
+
+h3 {
+    text-align: center;
+    padding: 10px 1px 0px 1px;
+}
+
+#scoreTable {
+    align-content: right;
+    margin: 0 auto 0 auto;
+}
+
+#timer {
+    padding: 0px 5px 0px 5px;
+}
+
+#highScore {
+    padding: 0px 5px 0px 150px;
+}
+
+#pScore {
+    padding: 0px 5px 0px 150px;
+}
+
+.value {
+    padding: 0px 40px;
+}
+
+/*border spacing and collapse were used to determine the size of target*/
+
+#gameTable {
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 0px;
+    border-spacing: 20px;
+    border-collapse: separate;
+}
+
+tbody {
+    padding: 0px;
+}
+
+/*trying to make the targets distinguishable from background.
+with a more opaque colour background
+also size of space between targets*/
+
+td {
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 30px;
+    margin: 1px;
+    background-color: rgba(255,255,255,0.5);
+    background-size: 100%;
+}
+
+.active {
+    background-color: black;
+}
