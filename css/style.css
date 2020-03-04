@@ -7,13 +7,16 @@ body {
     background-position: center;
     align-content: center;
     background-image: url("images/Target-faded-clipped.png");
+    font-family: Tahoma, Geneva, sans-serif;
 }
 
 h1 {
+    background-size: 100%;
     text-align: center;
-    color: red;
+    color: #a31212;
     font-size: 40px;
-    padding: 5px;
+    padding-top: 0px;
+    padding-bottom: 5px;
     margin: 0px;
 }
 
@@ -26,13 +29,17 @@ p {
 
 h2 {
     text-align: center;
-    padding: 20px 1px 0px 1px;
+    padding: 10px 1px 0px 1px;
     margin: 0px;
+    color: #a31212;
 }
 
 h3 {
     text-align: center;
     padding: 10px 1px 0px 1px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    color: #a31212;
 }
 
 #scoreTable {

@@ -6,7 +6,8 @@ const DEFAULT_CELL_BG_IMG = "url()";
 // Game State //
 
 let playing;
-let score;
+let score = 0;
+let highScore = 0;
 let prevTarget;
 let target;
 let targetTimerId;
@@ -21,6 +22,8 @@ let gameTableEl = document.getElementById('gameTable');
 let boardEl = document.getElementById('gameTableBody');
 let scoreEl = document.getElementById('pScorVal');
 let timeEl = document.getElementById('timVal');
+let highScoreEl = document.getElementById('hScorVal');
+let headerThree = document.getElementById('h3');
 
 // Event Listeners //
 
@@ -55,6 +58,7 @@ function countdown() {
     // initial state of game
 
 function init() {
+    timeLeft = 30;
     playing = false;
     score = 0;
     prevTarget = null;
@@ -116,8 +120,11 @@ function handleTargetClick(evt) {
     }, 150);
 }
 
+// changes curser icon and playing will equal true. run render and changeTarget
+
 function startGame() {
     console.log('start game')
+    headerThree.innerHTML = 'YOU GOT THIS !!'
     gameTableEl.style.cursor = "url('css/images/cursor-logo.png') 20 20, default";
     playing = true
     // start timer
@@ -128,12 +135,21 @@ function startGame() {
 
 function stopGame() {
     clearTimeout(timerId);
+    if (score > highScore) {
+        highScore = score;
+        highScoreEl.innerHTML = `${highScore}`;
+    }
     gameTableEl.style.cursor = "default";
     playing = false;
     gameFinished = true;
     prevTarget = target
     target = null
+    headerThree.innerHTML = 'GAME OVER !!'
     render();
+    setTimeout(() => {
+        headerThree.innerHTML = 'CLICK ANYWHERE BELOW TO RESTART'
+        init();
+    }, 3000)
 }
 
 function changeTarget() {
@@ -150,6 +166,15 @@ function changeTarget() {
         }, timerSpeed)
     }
 }
+
+
+
+
+
+
+
+
+
 
 
 
