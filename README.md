@@ -6,16 +6,15 @@ A game designed to test an individual's ability to respond to a target by showin
 
 link to initial start game page:
 
-https://imgur.com/gQFuPOv
+https://i.imgur.com/gQFuPOv.png
 
 link to during gameplay:
 
-https://imgur.com/yf16Tq6
+https://i.imgur.com/yf16Tq6.png
 
 link to end game screen:
 
-https://imgur.com/SFWGKjY
-
+https://i.imgur.com/SFWGKjY.png
 
 the game used HTML, CSS, and JS. HTML created the table, CSS was used to style most of the styling and JS dynamically changed the HTML and CSS to interact with the user's clicks
 

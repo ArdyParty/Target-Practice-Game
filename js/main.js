@@ -9,6 +9,7 @@ let playing;
 let score = 0;
 let highScore = 0;
 let prevTarget;
+let lastTargetEl;
 let target;
 let targetTimerId;
 let timerSpeed;
@@ -112,6 +113,10 @@ function handleBoardClick(evt) {
     // will run changeTarget and Render function after .15 seconds. 
 
 function handleTargetClick(evt) {
+    if (lastTargetEl == evt.target) {
+        return;
+    }
+    lastTargetElement = evt.target;
     score += 1
     evt.target.style.backgroundImage = "url('css/images/Bullet-hole.png')";
     setTimeout(() => {
