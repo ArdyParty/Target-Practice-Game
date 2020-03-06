@@ -116,7 +116,7 @@ function handleTargetClick(evt) {
     if (lastTargetEl == evt.target) {
         return;
     }
-    lastTargetElement = evt.target;
+    lastTargetEl = evt.target;
     score += 1
     evt.target.style.backgroundImage = "url('css/images/Bullet-hole.png')";
     setTimeout(() => {
