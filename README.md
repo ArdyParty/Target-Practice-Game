@@ -16,12 +16,12 @@ link to end game screen:
 
 https://i.imgur.com/SFWGKjY.png
 
-the game used HTML, CSS, and JS. HTML created the table, CSS was used to style most of the styling and JS dynamically changed the HTML and CSS to interact with the user's clicks
+the game used HTML, CSS, and JS. HTML created the table, CSS was used for most of the styling and JS dynamically changed the HTML and CSS to interact with the user's clicks
 
 
 Link to game: 
 
-
+https://ardyparty.github.io/Target-Practice-Game
 
 next steps:
 
