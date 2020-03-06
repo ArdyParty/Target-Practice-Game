@@ -9,14 +9,42 @@ let playing;
 let score = 0;
 let highScore = 0;
 let prevTarget;
-let lastTargetEl;
 let target;
 let targetTimerId;
-let timerSpeed;
+let timerSpeed = {
+    '0' : 2000,
+    '1' : 1000, 
+};
+let difficulty;
 let gameFinished;
 let timeLeft = 30;
 let timerId;
 
+
+//
+
+document.querySelectorAll('button.difficulty-level').forEach(function(el){
+    el.addEventListener('click', checkDifficulty)
+})
+
+//buttonEl.addEventListener('click', checkDifficulty)
+
+function checkDifficulty(evt){
+    let difficultyBtn = evt.target;
+    let difficultyId = difficultyBtn.id;
+    difficulty = difficultyId.replace("d", "");
+    difficulty = parseInt(difficulty);
+}
+
+
+
+
+
+
+
+
+
+//
 // Cached DOM Elemebts //
 
 let gameTableEl = document.getElementById('gameTable');
@@ -65,7 +93,7 @@ function init() {
     prevTarget = null;
     target = null;
     gameFinished = false;
-    timerSpeed = 2000;
+    //timerSpeed = 2000;
     render();
 }
 
@@ -113,10 +141,6 @@ function handleBoardClick(evt) {
     // will run changeTarget and Render function after .15 seconds. 
 
 function handleTargetClick(evt) {
-    if (lastTargetEl == evt.target) {
-        return;
-    }
-    lastTargetEl = evt.target;
     score += 1
     evt.target.style.backgroundImage = "url('css/images/Bullet-hole.png')";
     setTimeout(() => {
@@ -168,18 +192,9 @@ function changeTarget() {
         targetTimerId = setTimeout(() => {
             changeTarget()
             render()
-        }, timerSpeed)
+        }, timerSpeed[difficulty])
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 
