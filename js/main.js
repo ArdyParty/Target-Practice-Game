@@ -190,6 +190,3 @@ function checkDifficulty(evt){
     difficulty = difficultyId.replace("d", "");
     difficulty = parseInt(difficulty);
 }
-
-
-
