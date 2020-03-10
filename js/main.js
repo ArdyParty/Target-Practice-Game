@@ -11,6 +11,7 @@ let highScore = 0;
 let prevTarget;
 let target;
 let targetTimerId;
+let lastTargetEl;
 let timerSpeed = {
     '0' : 2000,
     '1' : 1000, 
@@ -20,31 +21,6 @@ let gameFinished;
 let timeLeft = 30;
 let timerId;
 
-
-//
-
-document.querySelectorAll('button.difficulty-level').forEach(function(el){
-    el.addEventListener('click', checkDifficulty)
-})
-
-//buttonEl.addEventListener('click', checkDifficulty)
-
-function checkDifficulty(evt){
-    let difficultyBtn = evt.target;
-    let difficultyId = difficultyBtn.id;
-    difficulty = difficultyId.replace("d", "");
-    difficulty = parseInt(difficulty);
-}
-
-
-
-
-
-
-
-
-
-//
 // Cached DOM Elemebts //
 
 let gameTableEl = document.getElementById('gameTable');
@@ -53,11 +29,15 @@ let scoreEl = document.getElementById('pScorVal');
 let timeEl = document.getElementById('timVal');
 let highScoreEl = document.getElementById('hScorVal');
 let headerThree = document.getElementById('h3');
+let difficultyEl = document.querySelectorAll('button.difficulty-level')
 
 // Event Listeners //
 
 gameTableEl.addEventListener('click', handleTableClick);
 boardEl.addEventListener('click', handleBoardClick);
+difficultyEl.forEach(function(el) {
+    el.addEventListener('click', checkDifficulty)
+});
 
 // functions //
 
@@ -93,7 +73,7 @@ function init() {
     prevTarget = null;
     target = null;
     gameFinished = false;
-    //timerSpeed = 2000;
+    timerSpeed = timerSpeed[0];
     render();
 }
 
@@ -125,7 +105,7 @@ function render() {
 
 function handleTableClick(evt) {
     if (!playing && !gameFinished) {
-        startGame()
+        startGame();
     }
 }
 
@@ -133,7 +113,7 @@ function handleTableClick(evt) {
 
 function handleBoardClick(evt) {
     if (playing && evt.target.classList.contains('active')) {
-        handleTargetClick(evt)
+        handleTargetClick(evt);
     }
 }
 
@@ -141,6 +121,10 @@ function handleBoardClick(evt) {
     // will run changeTarget and Render function after .15 seconds. 
 
 function handleTargetClick(evt) {
+    if (lastTargetEl == evt.target) {
+        return;
+    }
+    lastTargetEl = evt.target;
     score += 1
     evt.target.style.backgroundImage = "url('css/images/Bullet-hole.png')";
     setTimeout(() => {
@@ -149,17 +133,16 @@ function handleTargetClick(evt) {
     }, 150);
 }
 
-// changes curser icon and playing will equal true. run render and changeTarget
+    // changes curser icon and playing will equal true. run render and changeTarget
 
 function startGame() {
-    console.log('start game')
-    headerThree.innerHTML = 'YOU GOT THIS !!'
+    headerThree.innerHTML = 'YOU GOT THIS !!';
     gameTableEl.style.cursor = "url('css/images/cursor-logo.png') 20 20, default";
-    playing = true
+    playing = true;
     // start timer
     timerId = setInterval(countdown, 1000);
-    changeTarget()
-    render()
+    changeTarget();
+    render();
 }
 
 function stopGame() {
@@ -171,30 +154,39 @@ function stopGame() {
     gameTableEl.style.cursor = "default";
     playing = false;
     gameFinished = true;
-    prevTarget = target
-    target = null
-    headerThree.innerHTML = 'GAME OVER !!'
+    prevTarget = target;
+    target = null;
+    headerThree.innerHTML = 'GAME OVER !!';
     render();
     setTimeout(() => {
         headerThree.innerHTML = 'CLICK ANYWHERE BELOW TO RESTART'
         init();
+        timerspeed = timerSpeed[difficulty];
     }, 3000)
 }
+
 
 function changeTarget() {
     if (playing === true) {
         clearTimeout(targetTimerId)
-        prevTarget = target
-        target = selectTarget() 
+        prevTarget = target;
+        target = selectTarget();
         while (target === prevTarget) {
-            target = selectTarget()
+            target = selectTarget();
         }
         targetTimerId = setTimeout(() => {
-            changeTarget()
-            render()
-        }, timerSpeed[difficulty])
+            changeTarget();
+            render();
+        }, timerSpeed)
     }
 }
 
+    // function to place difficulty
 
-
+function checkDifficulty(evt){
+    difficulty = 0;
+    let difficultyBtn = evt.target;
+    let difficultyId = difficultyBtn.id;
+    difficulty = difficultyId.replace("d", "");
+    difficulty = parseInt(difficulty);
+}
